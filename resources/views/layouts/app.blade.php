@@ -20,6 +20,7 @@
     <!-- Template  CSS File -->
     <link href="{{ asset('vendor/assets/css/style.css') }}" rel="stylesheet">
 
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Inicio</title>
     @livewireStyles
 </head>
@@ -67,6 +68,7 @@
     </nav>
     @yield('contenido')
     @livewireScripts
+
 </body>
 
 </html>
