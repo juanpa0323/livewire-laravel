@@ -7,28 +7,24 @@ use Livewire\Component;
 
 class Crear extends Component
 {
-    /**
-     * Summary of pelicula
-     * @var Pelicula
-     */
-    public Pelicula $pelicula;
-    public $Nombre;
-    public $Descripcion;
-    
+
+    public Pelicula $movie;
+
     public function mount()
     {
-        $this->pelicula = new Pelicula();
-
+        $this->movie = new Pelicula();
     }
-    
 
-    protected function rules()
+    public function rules()
     {
         return [
-            'Nombre' => 'required|max:50',
-            'Descripcion' => 'required|max:100',
+            'movie.Nombre' => 'required|max:50|unique:movies,Nombre',
+            'movie.Descripcion' => 'required|max:100',
         ];
     }
+
+
+
 
     public function updated($propertyName)
     {
@@ -37,17 +33,13 @@ class Crear extends Component
 
     public function render()
     {
-        return view('livewire.peliculas.crear');
+        return view('livewire.peliculas.crear')->extends('layouts.app');
     }
 
-    public function guardar()
+    public function save()
     {
         $this->validate();
-        $this->pelicula->save();
-       
-
-
+        $this->movie->save();
+        $this->dispatch('refresh');
     }
-
 }
-

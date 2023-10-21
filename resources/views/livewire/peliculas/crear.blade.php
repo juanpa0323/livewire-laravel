@@ -1,11 +1,20 @@
 <div>
-    <div wire:ignore.self class="modal fade" id="ModalCreate" tabindex="-1">
+    <div class="row">
+        <div class="row col-12 mt-5 d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCreate"
+                data-bs-whatever="@getbootstrap">Crear Pelicula @getbootstrap</button>
+        </div>
+    </div>
+    <div wire:ignore.self class="modal" id="ModalCreate" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalCreateLabel">Nueva Pelicula</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                @if (session()->has('cerrarModal'))
+                    <script>
+                       // $('#ModalCreate').modal('hide');
+                       //console.log('fuuu');
+                    </script>
+                @endif
+
                 @if ($errors->any())
                     <div class="alert alert-danger d-block mt-3">
                         <ul>
@@ -17,17 +26,15 @@
                 @endif
 
                 <div class="modal-body">
-                    <form wire:submit.prevent="guardar">
+                    <form wire:submit="save">
                         @csrf
                         <div class="mb-3">
                             <label class="col-form-label">Nombre:</label>
-                            <input wire:model="pelicula.Nombre" type="text" class="form-control">
-                            @error('pelicula.Nombre') <span class="error">{{ $message }}</span> @enderror
+                            <input wire:model.live="movie.Nombre" type="text" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="col-form-label">Descripción:</label>
-                            <input wire:model="pelicula.Descripcion" type="text" class="form-control"></textarea>
-                            @error('pelicula.Descripcion') <span class="error">{{ $message }}</span> @enderror
+                            <input wire:model.live="movie.Descripcion" type="text" class="form-control">
                         </div>
 
                         <!-- Mover los botones dentro del formulario -->

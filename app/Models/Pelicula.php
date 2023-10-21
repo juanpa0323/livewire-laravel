@@ -12,4 +12,8 @@ class Pelicula extends Model
     protected $table = 'movies';
 
     protected $fillable = ['Nombre', 'Descripcion'];
+
+    public $timestamps = true; 
+
+
 }
