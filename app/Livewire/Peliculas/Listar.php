@@ -7,15 +7,14 @@ use App\Models\Pelicula;
 
 class Listar extends Component
 {
-    //protected $listeners = ['render' => 'render'];
+    protected $listeners = ['refresh' => 'render'];
 
-    #[On('refresh')]
-     #[Layout('layouts.app')]
+    #[Layout('components.layouts.app')]
     public function render()
     {
         $peliculas = Pelicula::all();
         return view('livewire.peliculas.listar', [
             'peliculas' => $peliculas,
-        ])->extends('components.layouts.app');
+        ]);
     }
 }

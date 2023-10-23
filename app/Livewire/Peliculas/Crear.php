@@ -5,6 +5,7 @@ namespace App\Livewire\Peliculas;
 use App\Models\Pelicula;
 use Livewire\Component;
 
+#[Layout('components.layouts.app')]
 class Crear extends Component
 {
 
@@ -33,7 +34,7 @@ class Crear extends Component
 
     public function render()
     {
-        return view('livewire.peliculas.crear')->extends('layouts.app');
+        return view('livewire.peliculas.crear');
     }
 
     public function save()

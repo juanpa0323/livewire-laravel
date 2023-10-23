@@ -85,7 +85,7 @@
     @yield('content')
     {{ $slot }}
 
-    @livewireScriptConfig
+    @livewireScripts
 </body>
 
 </html>
